@@ -65,6 +65,8 @@ function add (
         // this is just a safety net in case event.timeStamp is unreliable in
         // certain weird environments...
         e.target === e.currentTarget ||
+        // like previous, but event source is child element
+        e.currentTarget.contains(e.target) ||
         // event is fired after handler attachment
         e.timeStamp >= attachedTimestamp ||
         // bail for environments that have buggy event.timeStamp implementations
